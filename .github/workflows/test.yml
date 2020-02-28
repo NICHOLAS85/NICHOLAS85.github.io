@@ -15,9 +15,6 @@ jobs:
       uses: dciborow/commit@0.0.1
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
-        push-branch: 'master'
         commit-message: 'publish'
-        force-add: 'true'
-        force-push: 'true'
         files: Packages.bz2
   
