@@ -10,7 +10,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Run a one-line script
-      run: ./repo/UpdateRepo.sh
+      run: cd repo && ./UpdateRepo.sh
     - uses: stefanzweifel/git-auto-commit-action@v4.0.0
       with:
         commit_message: Apply automatic changes
