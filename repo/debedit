@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+DEBFILE="$1"
+DEPICTION="$2"
+TMPDIR=`mktemp -d /tmp/deb.XXXXXXXXXX` || exit 1
+OUTPUT="$DEBFILE.modified"
+
+if [[ -e "$OUTPUT" ]]; then
+  echo "$OUTPUT exists."
+  rm -r "$TMPDIR"
+  exit 1
+fi
+
+dpkg-deb -x "$DEBFILE" "$TMPDIR"
+dpkg-deb --control "$DEBFILE" "$TMPDIR"/DEBIAN
+
+if [[ ! -e "$TMPDIR"/DEBIAN/control ]]; then
+  echo DEBIAN/control not found.
+
+  rm -r "$TMPDIR"
+  exit 1
+fi
+
+CONTROL="$TMPDIR"/DEBIAN/control
+
+MOD=`stat -c "%y" "$CONTROL"`
+
+if ! grep -q "Depiction:" "$CONTROL"; then
+  echo "$DEPICTION" >> "$CONTROL"
+fi
+
+if [[ "$MOD" == `stat -c "%y" "$CONTROL"` ]]; then
+  echo Not modfied.
+else
+  echo Building new deb...
+  dpkg -b "$TMPDIR" "$OUTPUT"
+  mv "$OUTPUT" "$DEBFILE"
+fi
+
+rm -r "$TMPDIR"

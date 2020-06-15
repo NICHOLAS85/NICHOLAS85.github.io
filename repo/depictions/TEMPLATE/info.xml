@@ -1,0 +1,39 @@
+<package>
+	<id>${package}</id>
+	<name>${name}</name>
+	<version>${version}</version>
+	<compatibility>
+		<firmware>
+			<miniOS>${miniOS}</miniOS>
+		</firmware>
+	</compatibility>
+	<dependencies>
+		${dependencies}
+	</dependencies>
+	<shortDescription>${shortdescription}</shortDescription>
+	<descriptionlist>
+		${longdescription}
+	</descriptionlist>
+<!--
+	<screenshots>
+		<screenshot>
+			<description>This is a description for screenshot 1. It's Cydia!</description>
+			<image>cydia.jpg</image>
+		</screenshot>
+		<screenshot>
+			<description>This is a description for screenshot 2. It's another Cydia!</description>
+			<image>cydia.jpg</image>
+		</screenshot>
+	</screenshots>
+	<changelog>
+		#changelog#
+	</changelog>
+-->
+	<links>
+		<link>
+			<name>/r/jailbreak</name>
+			<url>https://www.reddit.com/r/jailbreak</url>
+			<iconclass>fa fa-reddit</iconclass>
+		</link>
+	</links>
+</package>
